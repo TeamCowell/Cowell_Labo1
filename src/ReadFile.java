@@ -9,5 +9,11 @@ import java.io.BufferedReader;
  */
 public class ReadFile {
 	
+	private String path;
+	
+	public ReadFile(String file_path){
+		path = file_path;
+		}
+
 
 }

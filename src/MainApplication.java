@@ -29,10 +29,12 @@ public class MainApplication {
     	
     	
         System.out.println("Hello! Please input the file you wish to compress! :");
-        String filename = commandRead.readLine();
+        
+        String filename = commandRead.readLine(); // Reading a string input
         System.out.println(filename);
         System.out.println("Reading File ... "+filename);
-        FrequencyTableReader ftr = new FrequencyTableReader(filename);
+        
+        FrequencyTableReader ftr = new FrequencyTableReader(filename); // Reading the path and creating the frequency table
         ftr.readFile();
         
    /*     

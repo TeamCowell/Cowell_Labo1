@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Hashtable;
@@ -59,7 +60,7 @@ public class FrequencyTableReader{
 		Map<K,V> result = new LinkedHashMap<>();
 		Stream <Entry<K,V>> st = map.entrySet().stream();
 
-		st.sorted(Comparator.comparing(e -> e.getValue()))
+		st.sorted(Collections.reverseOrder(Comparator.comparing(e -> e.getValue()))) // Used collection method to reverse the order
 		.forEach(e ->result.put(e.getKey(),e.getValue()));
 
 		return result;

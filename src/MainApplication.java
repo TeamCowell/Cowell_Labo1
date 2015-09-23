@@ -1,11 +1,11 @@
 import java.io.BufferedReader;
 import java.io.File;
-<<<<<<< HEAD
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.Scanner;
-=======
+
 import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
@@ -14,8 +14,6 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.nio.charset.Charset;
 import java.util.Hashtable;
->>>>>>> master
-
 
 /*********
  * 
@@ -31,25 +29,19 @@ public class MainApplication {
     	
     	
         System.out.println("Hello! Please input the file you wish to compress! :");
-<<<<<<< HEAD
-        String filename =(new Scanner(System.in).next());
+        String filename = commandRead.readLine();
         System.out.println(filename);
-        FrequencyTableReader ftr = new FrequencyTableReader("C:\\Users\\Simon\\Documents\\LOG320_TEST\\" + filename);
+        System.out.println("Reading File ... "+filename);
+        FrequencyTableReader ftr = new FrequencyTableReader(filename);
         ftr.readFile();
-=======
         
-        String text = commandRead.readLine();
-        
-        System.out.println("Reading File ... "+text);
-        
-        Charset encoding = Charset.defaultCharset();
-        
+   /*     
         File file = new File(text);
         handleFile(file, encoding);
-                           
+     */                      
     }
     
-    private static void handleFile(File file, Charset encoding)
+   /* private static void handleFile(File file, Charset encoding)
             throws IOException {
         try (InputStream in = new FileInputStream(file);
              Reader reader = new InputStreamReader(in, encoding);
@@ -73,9 +65,7 @@ public class MainApplication {
     }
     private static void createFrequencyTable(char ch){
     
-    	
->>>>>>> master
-    }
+    }*/
     
 	
 }

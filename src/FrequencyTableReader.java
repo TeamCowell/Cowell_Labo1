@@ -63,6 +63,7 @@ public class FrequencyTableReader{
 		.forEach(e ->result.put(e.getKey(),e.getValue()));
 
 		return result;
+		
 }
 
 }

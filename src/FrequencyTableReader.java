@@ -18,8 +18,8 @@ import java.io.FileNotFoundException;
  */
 public class FrequencyTableReader{
 	String path;
-	HashMap<Character, Integer> freqTable 
-		= new HashMap<Character, Integer>();
+	LinkedHashMap<Character, Integer> freqTable 
+		= new LinkedHashMap<Character, Integer>();
 	
 	
 	public FrequencyTableReader(String path){
@@ -48,7 +48,8 @@ public class FrequencyTableReader{
 			}
 		}
 		System.out.println(freqTable);
-		freqTable = (HashMap<Character, Integer>) sortByValue(freqTable);
+		freqTable = (LinkedHashMap<Character, Integer>) sortByValue(freqTable);
+		//sortFrequencyTable();
 		System.out.println(freqTable);
 		
 		reader.close();
@@ -65,7 +66,22 @@ public class FrequencyTableReader{
 
 		return result;
 		
-}
+	}
+	
+	public void sortFrequencyTable(){
+		sortByValue(freqTable);
+	}
+
+	public LinkedHashMap<Character, Integer> getFreqTable() {
+		return freqTable;
+	}
+
+	public void setFreqTable(LinkedHashMap<Character, Integer> freqTable) {
+		this.freqTable = freqTable;
+	}
+	
+	
+	
 
 }
 

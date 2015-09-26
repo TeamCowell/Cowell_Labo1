@@ -9,10 +9,10 @@ public class Noeud {
 		
 	}
 	
-	public Noeud(int valeur, int frequence){
-		
+	public Noeud(char valeur, int frequence){
+		this(valeur,frequence,null,null);
 	}
-	
+
 	public Noeud(char valeur, int frequence, Noeud gauche, Noeud droite){
 		this.valeur = valeur;
 		this.frequence = frequence;
@@ -60,7 +60,8 @@ public class Noeud {
 
 	@Override
 	public String toString() {
-		return "Noeud [frequence=" + frequence + ", valeur=" + valeur + "]";
+		return "Noeud [frequence=" + frequence + ", valeur=" + valeur +
+				", gauche=" + gauche +", droite=" + droite +"]";
 	}
 	
 	

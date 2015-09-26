@@ -34,8 +34,8 @@ public class MainApplication {
         System.out.println(filename);
         System.out.println("Reading File ... "+filename);
         
-//        FrequencyTableReader ftr = new FrequencyTableReader(filename); // Reading the path and creating the frequency table
-        FrequencyTableReader ftr = new FrequencyTableReader("C:\\Users\\Simon\\Documents\\LOG320_TEST\\test1.txt");
+        FrequencyTableReader ftr = new FrequencyTableReader(filename); // Reading the path and creating the frequency table
+        //FrequencyTableReader ftr = new FrequencyTableReader("C:\\Users\\Simon\\Documents\\LOG320_TEST\\test1.txt");
         ftr.readFile();
         
         new BinaryTree(ftr).encodeTree();

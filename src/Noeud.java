@@ -1,5 +1,5 @@
 
-public class Noeud {
+public class Noeud{
 	public int frequence;
 	public char valeur;
 	public Noeud gauche;
@@ -20,8 +20,19 @@ public class Noeud {
 		this.droite = droite;
 	}
 	
-	public int compareTo(Noeud unNoeud){
+	/*public int compareTo(Noeud unNoeud){
 		return frequence - unNoeud.frequence;
+	}*/
+	
+	public Noeud highestFrequenceCompareTo(Noeud autrenoeud) {
+	      Noeud resultat = this ;
+	      if (this.frequence > autrenoeud.frequence)
+	         resultat = this;
+	      if (this.frequence < autrenoeud.frequence)
+	         resultat = autrenoeud;
+	      if (this.frequence == autrenoeud.frequence)
+	         resultat = this;
+	      return resultat;
 	}
 	
 	
@@ -63,8 +74,5 @@ public class Noeud {
 		return "Noeud [frequence=" + frequence + ", valeur=" + valeur +
 				", gauche=" + gauche +", droite=" + droite +"]";
 	}
-	
-	
-	
 
 }

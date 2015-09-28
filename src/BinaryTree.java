@@ -10,6 +10,7 @@ public class BinaryTree {
 	
 	FrequencyTableReader table;
 	ArrayList<Noeud> listNoeud = new ArrayList<Noeud>();
+	List<Entry<Character, Integer>> entryList;
 	
 	BinaryTree(FrequencyTableReader table){
 		this.table = table;
@@ -18,8 +19,7 @@ public class BinaryTree {
 	public Noeud encodeTree(){
 		
 
-		List<Entry<Character, Integer>> entryList =
-			    new ArrayList<Map.Entry<Character, Integer>>(table.getFreqTable().entrySet());
+		this.entryList = new ArrayList<Map.Entry<Character, Integer>>(table.getFreqTable().entrySet());
 		
 		listNoeud = entryListToNoeudArrayList(entryList);
 

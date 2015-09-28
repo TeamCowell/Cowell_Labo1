@@ -49,6 +49,7 @@ public class MainApplication {
         ne.encodeNode();
         
         System.out.println(ftr.textFileCharactersList);
+        System.out.println(bt.entryList);
         
    /*     
         File file = new File(text);

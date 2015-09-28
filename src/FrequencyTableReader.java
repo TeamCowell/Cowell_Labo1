@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -20,6 +21,7 @@ public class FrequencyTableReader{
 	String path;
 	LinkedHashMap<Character, Integer> freqTable 
 		= new LinkedHashMap<Character, Integer>();
+	ArrayList<Character> textFileCharactersList = new ArrayList<Character>();
 	
 	
 	public FrequencyTableReader(String path){
@@ -35,6 +37,7 @@ public class FrequencyTableReader{
 		int i;
 		while( ( car = reader.read() ) != (-1)){
 			System.out.println((char)car);
+			textFileCharactersList.add((char)car);
 			if(freqTable.containsKey( (Character)(char)car )){ 	//char existe
 				//incrementer le int
 				i = freqTable.get((Character)(char)car);
@@ -47,10 +50,10 @@ public class FrequencyTableReader{
 				freqTable.put((char) car, 1);
 			}
 		}
-		System.out.println(freqTable);
+		//System.out.println(freqTable);
 		freqTable = (LinkedHashMap<Character, Integer>) sortByValue(freqTable);
 		//sortFrequencyTable();
-		System.out.println(freqTable);
+		//System.out.println(freqTable);
 		
 		reader.close();
 	}

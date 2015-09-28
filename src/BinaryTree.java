@@ -71,7 +71,7 @@ public class BinaryTree {
 //		System.out.println(table.getFreqTable().get(1).toString());
 //		System.out.println(table.getFreqTable().get(table.getFreqTable().size()-2).toString());
 		
-		return null;
+		return listNoeud.get(0);
 	}
 
 	private ArrayList<Noeud> entryListToNoeudArrayList(List<Entry<Character, Integer>> entryList) {

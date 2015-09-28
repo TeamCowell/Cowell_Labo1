@@ -38,7 +38,17 @@ public class MainApplication {
         //FrequencyTableReader ftr = new FrequencyTableReader("C:\\Users\\Simon\\Documents\\LOG320_TEST\\test1.txt");
         ftr.readFile();
         
-        new BinaryTree(ftr).encodeTree();
+        
+        
+        BinaryTree bt = new BinaryTree(ftr);
+        
+        
+        
+        NodeEncoder ne = new NodeEncoder(bt.encodeTree(),ftr.textFileCharactersList);
+        
+        ne.encodeNode();
+        
+        System.out.println(ftr.textFileCharactersList);
         
    /*     
         File file = new File(text);

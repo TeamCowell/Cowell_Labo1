@@ -75,4 +75,9 @@ public class Noeud{
 				", gauche=" + gauche +", droite=" + droite +"]";
 	}
 
+	public boolean isLeaf() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

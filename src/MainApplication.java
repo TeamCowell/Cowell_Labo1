@@ -15,6 +15,7 @@ import java.io.Reader;
 import java.nio.charset.Charset;
 import java.util.Collections;
 import java.util.Hashtable;
+import java.util.Map;
 
 /*********
  * 
@@ -45,10 +46,13 @@ public class MainApplication {
         
         
         
-        NodeEncoder ne = new NodeEncoder(bt.encodeTree(),ftr.textFileCharactersList);
+        //NodeEncoder ne = new NodeEncoder(bt.encodeTree(),ftr.textFileCharactersList);
+        final Map<Character, String> charCode = NodeEncoder.genererCharCode(ftr.getFreqTable().keySet(),bt.encodeTree());
+        System.out.println(charCode);
+        //ne.encodeNode();
         
-        ne.encodeNode();
-        
+        final String encodedMessage = NodeEncoder.encoderMessage(charCode, ftr.getTextFileString());
+        System.out.println(encodedMessage);
         System.out.println(ftr.textFileCharactersList);
         System.out.println(bt.entryList);
         

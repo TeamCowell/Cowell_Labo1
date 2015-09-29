@@ -3,7 +3,11 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.BitSet;
+import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Set;
 
 public class NodeEncoder{
 	
@@ -21,6 +25,27 @@ public class NodeEncoder{
 		this.texteAEncoderList = texteAEncoderList;
 	}
 	
+	 public NodeEncoder() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public static Map<Character, String> genererCharCode(Set<Character> chars, Noeud node) {
+	       final Map<Character, String> map = new HashMap<Character, String>();
+	       doCode(node, map, "");
+	       return map;
+	    }
+
+
+	    private static void doCode(Noeud noeud, Map<Character, String> map, String s) {
+	        if (noeud.gauche == null && noeud.droite == null) {
+	            map.put(noeud.valeur, s);
+	            return;
+	        }    
+	        doCode(noeud.gauche, map, s + '0');
+	        doCode(noeud.droite, map, s + '1' );
+	    }
+
+
 	public String encodeNode(){
 		
 		//System.out.println(searchNodes('b',noeudRacine));
@@ -87,6 +112,15 @@ public class NodeEncoder{
 	    }
 	    
 	    return result;
+	}
+
+	public static String encoderMessage(Map<Character, String> charCode, String textFileString) {
+		final StringBuilder stringBuilder = new StringBuilder();
+
+        for (int i = 0; i < textFileString.length(); i++) {
+            stringBuilder.append(charCode.get(textFileString.charAt(i)));
+        }
+        return stringBuilder.toString();
 	}
 	
 	

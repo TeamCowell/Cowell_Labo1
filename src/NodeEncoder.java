@@ -42,7 +42,7 @@ public class NodeEncoder{
 		System.out.println(decodingString);
 		//byteArray = encodeString.getBytes(Charset.forName("UTF-8"));
 		
-		short a = Short.parseShort(encodeString, 2);
+		/*short a = Short.parseShort(encodeString, 2);
 		ByteBuffer bytes = ByteBuffer.allocate(2).putShort(a);
 
 		byte[] array = bytes.array();
@@ -52,7 +52,7 @@ public class NodeEncoder{
 		}
 		for (byte b : array) {
 		    System.out.println(Integer.toBinaryString(b & 255 | 256).substring(1));
-		}
+		}*/
 		
 		System.out.println(encodeString);
 		

@@ -64,9 +64,9 @@ public class BinaryTree {
 			listNoeud = sortDescendingNoeudArrayList(listNoeud);
 			
 		}
-		System.out.println(listNoeud.size());
+		//System.out.println(listNoeud.size());
 		
-		System.out.println(listNoeud);
+		//System.out.println(listNoeud);
 		
 //		System.out.println(table.getFreqTable().get(1).toString());
 //		System.out.println(table.getFreqTable().get(table.getFreqTable().size()-2).toString());

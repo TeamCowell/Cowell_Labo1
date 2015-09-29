@@ -68,6 +68,13 @@ public class Noeud{
 	public void setDroite(Noeud droite) {
 		this.droite = droite;
 	}
+	
+	public boolean isLeaf(){
+		if(this.getGauche() == null && this.getDroite() == null){
+			return true;
+		}else
+			return false;
+	}
 
 	@Override
 	public String toString() {

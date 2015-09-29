@@ -3,7 +3,9 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.BitSet;
+import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.Map;
 
 public class NodeEncoder{
 	
@@ -14,7 +16,9 @@ public class NodeEncoder{
 	private Byte[] byteArray;
 	private String decodingString = "";
 	private String stringEncodedData;
-	
+	private ArrayList<Character> pathList;
+	private String pathString;
+	private Map<Character, String> pathMap;
 	
 	public NodeEncoder(Noeud noeud,ArrayList<Character> texteAEncoderList){
 		this.noeudRacine = noeud;
@@ -23,13 +27,17 @@ public class NodeEncoder{
 	
 	public String encodeNode(){
 		
-		//System.out.println(searchNodes('b',noeudRacine));
+		//System.out.println(searchNodes('u',noeudRacine));
+		System.out.println(noeudRacine);
+		pathMap = genMap(noeudRacine);
 		
+		System.out.println(pathMap);
+		
+		//System.out.println(pathList);
 		//System.out.println(encodeString);
 		
-		for(Character car : texteAEncoderList){
+		/*for(Character car : texteAEncoderList){
 			
-			//System.out.println(car);
 			encodeStringTemp = "";
 			searchNodes(car.charValue(),noeudRacine);
 			System.out.println(encodeStringTemp);
@@ -38,8 +46,8 @@ public class NodeEncoder{
 			}
 			encodeString += encodeStringTemp;
 				
-		}
-		System.out.println(decodingString);
+		}*/
+		//System.out.println(decodingString);
 		//byteArray = encodeString.getBytes(Charset.forName("UTF-8"));
 		
 		/*short a = Short.parseShort(encodeString, 2);
@@ -54,20 +62,22 @@ public class NodeEncoder{
 		    System.out.println(Integer.toBinaryString(b & 255 | 256).substring(1));
 		}*/
 		
-		System.out.println(encodeString);
+		//System.out.println(encodeString);
 		
 		return null;
 	}
 	
 	private Noeud searchNodes(char c, Noeud noeud)
 	{
+		System.out.println(encodeStringTemp);
 		Noeud result = null;
+		//encodeStringTemp = "";
 	    if (noeud == null){
 	    	encodeStringTemp = "";
 	        return null;
 	    }
 	    if (noeud.getValeur() == c){
-	    	//encodeString += "b";
+	    	encodeStringTemp += "b";
 	        return noeud;
 	    }
 	    if (noeud.getGauche() != null){
@@ -77,18 +87,31 @@ public class NodeEncoder{
 	    }
 	    if (result == null){
 	    	encodeStringTemp += "1";
-	    	if(noeud.getDroite() != null){
-	    		if(noeud.getDroite().getValeur() == c){
-	    			encodeStringTemp += "1";
-	    		}
-	    	}
 	        result = searchNodes(c,noeud.getDroite());
+	        
 	       // encodeString = "";
 	    }
 	    
 	    return result;
 	}
 	
+	
+	private Map<Character, String> genMap(Noeud root) {
+	    Map<Character, String> map = new HashMap<Character, String>();
+	    huffmanTreeAdd(map, root, "");
+	    return map;
+	}
+
+	private void huffmanTreeAdd(Map<Character, String> map, Noeud root, String path) {
+	    if (root.isLeaf()) {
+	        map.put(root.getValeur(), path);
+	    }
+	    else {
+	        huffmanTreeAdd(map, root.getGauche(), path + '0');
+	        huffmanTreeAdd(map, root.getDroite(), path + '1');
+	    }
+	}
+
 	
 	
 	

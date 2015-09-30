@@ -61,7 +61,7 @@ public class EncodeurNoeud{
 	 public static void createFile(String message, String filename,String header) throws IOException {
 	        final BitSet bitSet = getBitSet(message);
 	        //System.out.println(bitSet.size());
-	        //header += ";;;";
+	        header += ";;;";
 	        String outputFileName = filename.substring(0, filename.length()-3) + "sap";
 
 	        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(outputFileName))){

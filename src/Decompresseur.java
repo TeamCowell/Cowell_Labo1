@@ -87,7 +87,9 @@ public class Decompresseur {
 	
 	private static LinkedHashMap<String,String> legendeToMap(String l){
 		l = l.substring(0, l.length()-3);
+		//System.out.println(l);
 		List<String> myList = new ArrayList<String>(Arrays.asList(l.split(",")));
+		//System.out.println(myList);
 		myList.set(0, myList.get(0).substring(myList.get(0).length()-1, myList.get(0).length())) ;
         System.out.println(myList);
         LinkedHashMap<String,String> map = new LinkedHashMap<String,String>();

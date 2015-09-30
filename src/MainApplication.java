@@ -51,11 +51,22 @@ public class MainApplication {
         System.out.println(charCode);
         //ne.encodeNode();
         
+        StringBuilder headerStringBuilder = new StringBuilder();
+        for (Map.Entry<Character, String> entry : charCode.entrySet())
+        {
+            //System.out.println(entry.getKey() + "," + entry.getValue());
+            headerStringBuilder.append(entry.getKey() + "," + entry.getValue()+",");
+            headerStringBuilder.toString();
+        }
+        headerStringBuilder.deleteCharAt(headerStringBuilder.length()-1);
+        System.out.println(headerStringBuilder.toString());
+        
         final String encodedMessage = NodeEncoder.encoderMessage(charCode, ftr.getTextFileString());
-        NodeEncoder.createFile(encodedMessage,filename);
-        System.out.println(encodedMessage);
-        System.out.println(ftr.textFileCharactersList);
-        System.out.println(bt.entryList);
+        NodeEncoder.createFile(encodedMessage,filename,headerStringBuilder.toString());
+        //System.out.println(encodedMessage);
+        //System.out.println(ftr.textFileCharactersList);
+        //System.out.println(bt.entryList);
+
         
 
     

@@ -57,11 +57,11 @@ public class NodeEncoder{
         return stringBuilder.toString();
 	}
 	
-	 public static void createFile(String message, String filename) throws IOException {
+	 public static void createFile(String message, String filename,String header) throws IOException {
 	        final BitSet bitSet = getBitSet(message);
-	        String header = "Header, im the best man";
+	        header += ";;;";
 
-	        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("/Users/Phil/Desktop/test_log320.txt"))){
+	        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("/Users/Phil/Desktop/test_log320.aps"))){
 
 	        	outputStream.writeObject(header + System.getProperty("line.separator") + bitSet);
 	        } 

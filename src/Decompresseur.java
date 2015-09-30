@@ -71,13 +71,13 @@ public class Decompresseur {
 	        if(readBitset){
 		    	if(k==0){
 		    		bitSetSize = Integer.parseInt(line);
-		    		System.out.println(line);
+		    		//System.out.println(line);
 		    	}
 		    	
 		    	if(k==1){
-	        		System.out.println(line);
+	        		//System.out.println(line);
 	        		line = line.substring(1, line.length()-1);
-	        		System.out.println(line);
+	        		//System.out.println(line);
 					try {
 						message = decodeMessage(this.path,line,bitSetSize);
 						System.out.println("message: "+message);
@@ -111,7 +111,7 @@ public class Decompresseur {
 		List<String> myList = new ArrayList<String>(Arrays.asList(l.split(",")));
 		//System.out.println(myList);
 		myList.set(0, myList.get(0).substring(myList.get(0).length()-1, myList.get(0).length())) ;
-        System.out.println(myList);
+        //System.out.println(myList);
         LinkedHashMap<String,String> map = new LinkedHashMap<String,String>();
         for(int i=0; i<myList.size(); i=i+2){
 //        	map.put(key, value)
@@ -146,7 +146,7 @@ public class Decompresseur {
             //final BitSet bitSet =  EncodeurNoeud.getBitSet(l);
             String bitSetString = "";
             List<String> myList = new ArrayList<String>(Arrays.asList(l.split("\\s*,\\s*")));
-            System.out.println(myList);
+            //System.out.println(myList);
             int j =0;
             for(int i=0; i<size;i++){
             	
@@ -158,7 +158,7 @@ public class Decompresseur {
             		bitSetString += "0";
             	}
             }
-            System.out.println(myList.size());
+            //System.out.println(myList.size());
             System.out.println("true mess: "+bitSetString);
             final StringBuilder stringBuilder = new StringBuilder();
             

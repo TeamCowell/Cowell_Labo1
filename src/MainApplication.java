@@ -27,29 +27,35 @@ public class MainApplication {
 	
     public static void main ( String [ ] arguments) throws IOException
     {
+    	String filename;
+    	String clientChoice;
     	BufferedReader commandRead = new BufferedReader(new InputStreamReader(System.in));
     	
+    	System.out.println("Hello! Would you like to compress or decompress a file? (c for compress, d for decompress) :");
+    	clientChoice = commandRead.readLine();
+    	while(!clientChoice.equals("c") && !clientChoice.equals("d") && !clientChoice.equals("C") && !clientChoice.equals("D")){
+        	System.out.println("Please enter a valid character !\nWould you like to compress or decompress a file? (c for compress, d for decompress) :");
+        	clientChoice = commandRead.readLine();
+    	}
     	
-        System.out.println("Hello! Please input the file you wish to compress! :");
+    	if(clientChoice.equals("c") || clientChoice.equals("C") ){
+    	//Compress
+
+        System.out.println("Please input the file you wish to compress! :");
         
-        String filename = commandRead.readLine(); // Reading a string input
+        filename = commandRead.readLine(); // Reading a string input
         System.out.println(filename);
         System.out.println("Reading File ... "+filename);
         
         FrequencyTableReader ftr = new FrequencyTableReader(filename); // Reading the path and creating the frequency table
         //FrequencyTableReader ftr = new FrequencyTableReader("C:\\Users\\Simon\\Documents\\LOG320_TEST\\test1.txt");
         ftr.readFile();
-        
-        
-        
+
         BinaryTree bt = new BinaryTree(ftr);
-        
-        
-        
+
         //NodeEncoder ne = new NodeEncoder(bt.encodeTree(),ftr.textFileCharactersList);
-        final Map<Character, String> charCode = NodeEncoder.genererCharCode(ftr.getFreqTable().keySet(),bt.encodeTree());
-        System.out.println(charCode);
-        //ne.encodeNode();
+        final Map<Character, String> charCode = EncodeurNoeud.genererCharCode(ftr.getFreqTable().keySet(),bt.encodeTree());
+       // System.out.println(charCode);
         
         StringBuilder headerStringBuilder = new StringBuilder();
         for (Map.Entry<Character, String> entry : charCode.entrySet())
@@ -59,16 +65,27 @@ public class MainApplication {
             headerStringBuilder.toString();
         }
         headerStringBuilder.deleteCharAt(headerStringBuilder.length()-1);
-        System.out.println(headerStringBuilder.toString());
         
-        final String encodedMessage = NodeEncoder.encoderMessage(charCode, ftr.getTextFileString());
-        NodeEncoder.createFile(encodedMessage,filename,headerStringBuilder.toString());
-        //System.out.println(encodedMessage);
-        //System.out.println(ftr.textFileCharactersList);
-        //System.out.println(bt.entryList);
-
+        final String encodedMessage = EncodeurNoeud.encoderMessage(charCode, ftr.getTextFileString());
+        EncodeurNoeud.createFile(encodedMessage,filename,headerStringBuilder.toString());
+    	}
+        //End Of Compress
+    	
+    	else if (clientChoice.equals("d") || clientChoice.equals("D")){ 
+        //Decompress
+        System.out.println("Please input the file you wish to decompress! :");
         
-
+        filename = commandRead.readLine(); // Reading a string input
+        
+        System.out.println(filename);
+        System.out.println("Reading File ... "+filename);
+        
+        Decompresseur decomp = new Decompresseur(filename);
+        
+        decomp.readFile();
+    	}
+    	//End of Decompress
     
     }
+
 }

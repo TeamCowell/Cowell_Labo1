@@ -21,7 +21,7 @@ public class FrequencyTableReader{
 	String path;
 	LinkedHashMap<Character, Integer> freqTable 
 		= new LinkedHashMap<Character, Integer>();
-	ArrayList<Character> textFileCharactersList = new ArrayList<Character>();
+	//ArrayList<Character> textFileCharactersList = new ArrayList<Character>();
 	String textFileString="";
 	
 	public FrequencyTableReader(String path){
@@ -36,8 +36,8 @@ public class FrequencyTableReader{
 		int car;
 		int i;
 		while( ( car = reader.read() ) != (-1)){
-			System.out.println((char)car);
-			textFileCharactersList.add((char)car);
+			/*System.out.println((char)car);
+			textFileCharactersList.add((char)car);*/
 			textFileString +=(char)car;
 			if(freqTable.containsKey( (Character)(char)car )){ 	//char existe
 				//incrementer le int

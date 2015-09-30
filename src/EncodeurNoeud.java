@@ -12,23 +12,24 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 
-public class NodeEncoder{
+public class EncodeurNoeud{
 	
-	private Noeud noeudRacine;
+	public static Noeud noeudRacine;
 	private ArrayList<Character> texteAEncoderList;
 	private String encodeStringTemp="";
 	private String encodeString = "";
 	private Byte[] byteArray;
 	private String decodingString = "";
 	private String stringEncodedData;
+	private String outputFileName;
 	
 	
-	public NodeEncoder(Noeud noeud,ArrayList<Character> texteAEncoderList){
+	public EncodeurNoeud(Noeud noeud,ArrayList<Character> texteAEncoderList){
 		this.noeudRacine = noeud;
 		this.texteAEncoderList = texteAEncoderList;
 	}
 	
-	 public NodeEncoder() {
+	 public EncodeurNoeud() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -59,15 +60,20 @@ public class NodeEncoder{
 	
 	 public static void createFile(String message, String filename,String header) throws IOException {
 	        final BitSet bitSet = getBitSet(message);
+	        //System.out.println(bitSet.size());
 	        header += ";;;";
+	        String outputFileName = filename.substring(0, filename.length()-3) + "sap";
 
-	        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("/Users/Phil/Desktop/test_log320.aps"))){
+	        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(outputFileName))){
 
-	        	outputStream.writeObject(header + System.getProperty("line.separator") + bitSet);
+	        	outputStream.writeObject(header + System.getProperty("line.separator") + bitSet.size() + System.getProperty("line.separator") +  bitSet);
+	        	
+	        	System.out.println("The file has been created under the name "+outputFileName);
 	        } 
+	        
 	    }
 	 
-	    private static BitSet getBitSet(String message) {
+	    public static BitSet getBitSet(String message) {
 	        final BitSet bitSet = new BitSet();
 	        int i = 0;
 	        for (i = 0; i < message.length(); i++) {
@@ -78,9 +84,9 @@ public class NodeEncoder{
 	            }
 	        }
 	        bitSet.set(i, true); // dummy bit set to know the length 
+	        
 	        return bitSet;
 	    }
-	
 	
 	
 	

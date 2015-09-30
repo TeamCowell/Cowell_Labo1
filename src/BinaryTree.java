@@ -22,17 +22,6 @@ public class BinaryTree {
 		this.entryList = new ArrayList<Map.Entry<Character, Integer>>(table.getFreqTable().entrySet());
 		
 		listNoeud = entryListToNoeudArrayList(entryList);
-
-		//System.out.println(entryList.get(entryList.size()-2));
-		// /Users/Phil/Desktop/test_log320.txt
-		//System.out.println(entryList.get(entryList.size()-1).getKey());
-		//System.out.println(entryList.get(entryList.size()-1).getValue());
-	
-		
-		System.out.println(listNoeud);
-
-		System.out.println(listNoeud.get(listNoeud.size()-1));
-		System.out.println(listNoeud.get(listNoeud.size()-2));
 		
 		listNoeud.add(new Noeud('\0',
 				listNoeud.get(listNoeud.size()-1).getFrequence()+
@@ -42,14 +31,9 @@ public class BinaryTree {
 				));
 		listNoeud.remove(listNoeud.size()-2);
 		listNoeud.remove(listNoeud.size()-2);
-		
-		System.out.println(listNoeud);
+
 		listNoeud = sortDescendingNoeudArrayList(listNoeud);
 
-		
-		System.out.println(listNoeud);
-		
-		System.out.println(listNoeud.size());
 		
 		while(listNoeud.size() != 1){
 			listNoeud.get(listNoeud.size()-1);
@@ -64,12 +48,6 @@ public class BinaryTree {
 			listNoeud = sortDescendingNoeudArrayList(listNoeud);
 			
 		}
-		//System.out.println(listNoeud.size());
-		
-		//System.out.println(listNoeud);
-		
-//		System.out.println(table.getFreqTable().get(1).toString());
-//		System.out.println(table.getFreqTable().get(table.getFreqTable().size()-2).toString());
 		
 		return listNoeud.get(0);
 	}

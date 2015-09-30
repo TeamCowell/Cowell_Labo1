@@ -1,3 +1,6 @@
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -44,76 +47,7 @@ public class NodeEncoder{
 	        doCode(noeud.gauche, map, s + '0');
 	        doCode(noeud.droite, map, s + '1' );
 	    }
-
-
-	public String encodeNode(){
-		
-		//System.out.println(searchNodes('b',noeudRacine));
-		
-		//System.out.println(encodeString);
-		
-		for(Character car : texteAEncoderList){
-			
-			//System.out.println(car);
-			encodeStringTemp = "";
-			searchNodes(car.charValue(),noeudRacine);
-			System.out.println(encodeStringTemp);
-			if(decodingString.indexOf(car.charValue()) == -1){
-				decodingString += car.charValue()+encodeStringTemp + ",";
-			}
-			encodeString += encodeStringTemp;
-				
-		}
-		System.out.println(decodingString);
-		//byteArray = encodeString.getBytes(Charset.forName("UTF-8"));
-		
-		/*short a = Short.parseShort(encodeString, 2);
-		ByteBuffer bytes = ByteBuffer.allocate(2).putShort(a);
-
-		byte[] array = bytes.array();
-		
-		for(int i=0; i< array.length;i++){
-			System.out.println("SIMON__"+array[i]);
-		}
-		for (byte b : array) {
-		    System.out.println(Integer.toBinaryString(b & 255 | 256).substring(1));
-		}*/
-		
-		System.out.println(encodeString);
-		
-		return null;
-	}
 	
-	private Noeud searchNodes(char c, Noeud noeud)
-	{
-		Noeud result = null;
-	    if (noeud == null){
-	    	encodeStringTemp = "";
-	        return null;
-	    }
-	    if (noeud.getValeur() == c){
-	    	//encodeString += "b";
-	        return noeud;
-	    }
-	    if (noeud.getGauche() != null){
-	    	encodeStringTemp += "0";
-	        result = searchNodes(c,noeud.getGauche());
-	        //encodeString = "";
-	    }
-	    if (result == null){
-	    	encodeStringTemp += "1";
-	    	if(noeud.getDroite() != null){
-	    		if(noeud.getDroite().getValeur() == c){
-	    			encodeStringTemp += "1";
-	    		}
-	    	}
-	        result = searchNodes(c,noeud.getDroite());
-	       // encodeString = "";
-	    }
-	    
-	    return result;
-	}
-
 	public static String encoderMessage(Map<Character, String> charCode, String textFileString) {
 		final StringBuilder stringBuilder = new StringBuilder();
 
@@ -122,6 +56,30 @@ public class NodeEncoder{
         }
         return stringBuilder.toString();
 	}
+	
+	 public static void createFile(String message, String filename) throws IOException {
+	        final BitSet bitSet = getBitSet(message);
+	        String header = "Header, im the best man";
+
+	        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("/Users/Phil/Desktop/test_log320.txt"))){
+
+	        	outputStream.writeObject(header + System.getProperty("line.separator") + bitSet);
+	        } 
+	    }
+	 
+	    private static BitSet getBitSet(String message) {
+	        final BitSet bitSet = new BitSet();
+	        int i = 0;
+	        for (i = 0; i < message.length(); i++) {
+	            if (message.charAt(i) == '0') {
+	                bitSet.set(i, false);
+	            } else {
+	                bitSet.set(i, true);
+	            }
+	        }
+	        bitSet.set(i, true); // dummy bit set to know the length 
+	        return bitSet;
+	    }
 	
 	
 	

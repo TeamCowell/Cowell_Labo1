@@ -24,7 +24,7 @@ public class BinaryTree {
 		listNoeud = entryListToNoeudArrayList(entryList);
 
 		//System.out.println(entryList.get(entryList.size()-2));
-		// /Users/Phil/Desktop/test_log320
+		// /Users/Phil/Desktop/test_log320.txt
 		//System.out.println(entryList.get(entryList.size()-1).getKey());
 		//System.out.println(entryList.get(entryList.size()-1).getValue());
 	

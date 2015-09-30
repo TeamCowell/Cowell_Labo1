@@ -2,12 +2,14 @@ import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,13 +33,15 @@ public class Decompresseur {
 		String message = null;
 		String line;
 		boolean readBitset = false;
+		String legendString = "";
 	    InputStream fis = new FileInputStream(this.path);
 	    InputStreamReader isr = new InputStreamReader(fis, Charset.forName("UTF-8"));
 	    BufferedReader br = new BufferedReader(isr);
 	    int bitSetSize=0;
 	    int k=0;
 	    while ((line = br.readLine()) != null) {
-	    	
+	    	        
+	    	/*
 	    	if(k==0){
 	    		System.out.println(line);
 	    		//ici on mets le code pour legende a map
@@ -61,27 +65,43 @@ public class Decompresseur {
 					e.printStackTrace();
 				}
 	    	}
-	    	k++;
+
+	    	k++;*/
 	    	
-	        /*if(readBitset){
-	        	try {
+	        if(readBitset){
+		    	if(k==0){
+		    		bitSetSize = Integer.parseInt(line);
+		    		System.out.println(line);
+		    	}
+		    	
+		    	if(k==1){
 	        		System.out.println(line);
 	        		line = line.substring(1, line.length()-1);
 	        		System.out.println(line);
-					System.out.println(decodeMessage(this.path,line));
-				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+					try {
+						message = decodeMessage(this.path,line,bitSetSize);
+						System.out.println("message: "+message);
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+		    	}
+			k++;
 	        }else{
+	        	legendString += "\n"+line;
 		        if(line.subSequence(line.length()-3, line.length()).equals(";;;")){
-		        	readBitset = true;
+		            readBitset = true;
+		        	map = legendeToMap(legendString);
 		        }
-		        System.out.println(line);
-	        }*/
+		       //System.out.println(line);
+	        }
 
 	    }
-		System.out.println(translateMessage(map, message));
+		System.out.println(translateMessage(map, message));		
+		
+		PrintWriter outpw = new PrintWriter(path.substring(0, path.length()-3) + "txt");
+		outpw.print(translateMessage(map, message));
+		outpw.close();
 		fis.close();
 	}
 	
@@ -96,7 +116,7 @@ public class Decompresseur {
         for(int i=0; i<myList.size(); i=i+2){
 //        	map.put(key, value)
         	map.put(myList.get(i+1), myList.get(i));
-        	System.out.println("\""+myList.get(i) + "\" " + myList.get(i+1));
+        	//System.out.println("\""+myList.get(i) + "\" " + myList.get(i+1));
         }
         return map;
 	}
@@ -108,7 +128,7 @@ public class Decompresseur {
 				String key = entry.getKey();
 				String value = entry.getValue();
 				// now work with key and value...
-				System.out.println("going thru map with key " + key);
+				//System.out.println("going thru map with key " + key);
 				if(message.startsWith(key)){
 					resultat.append(value);
 					message = message.substring(key.length());

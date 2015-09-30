@@ -61,12 +61,12 @@ public class EncodeurNoeud{
 	 public static void createFile(String message, String filename,String header) throws IOException {
 	        final BitSet bitSet = getBitSet(message);
 	        //System.out.println(bitSet.size());
-	        header += ";;;";
+	        //header += ";;;";
 	        String outputFileName = filename.substring(0, filename.length()-3) + "sap";
 
 	        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(outputFileName))){
 
-	        	outputStream.writeObject(header + System.getProperty("line.separator") + bitSet.size() + System.getProperty("line.separator") +  bitSet);
+	        	outputStream.writeObject(header + System.getProperty("line.separator") + bitSet.previousSetBit(bitSet.size()) + System.getProperty("line.separator") +  bitSet);
 	        	
 	        	System.out.println("The file has been created under the name "+outputFileName);
 	        } 
@@ -84,7 +84,6 @@ public class EncodeurNoeud{
 	            }
 	        }
 	        bitSet.set(i, true); // dummy bit set to know the length 
-	        
 	        return bitSet;
 	    }
 	
